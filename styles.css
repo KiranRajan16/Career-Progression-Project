@@ -1,0 +1,78 @@
+/* Background */
+body {
+    background: linear-gradient(to right, #eef2ff, #f8fafc);
+}
+
+/* Title */
+.title {
+    font-size: 35px !important;
+    font-weight: 800 !important;
+    text-align: center !important;
+    color: #4f46e5 !important;
+    margin-bottom: 20px;
+}
+
+/* Section headers */
+.section {
+    font-size: 30px !important;
+    font-weight: 700;
+    color: #1e293b;
+    margin-top: 30px !important;
+}
+
+/* KPI Cards */
+.kpi-card {
+    padding: 20px;
+    border-radius: 16px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0px 6px 15px rgba(0,0,0,0.15);
+}
+
+.kpi-blue { background: linear-gradient(135deg, #6366f1, #3b82f6); }
+.kpi-red { background: linear-gradient(135deg, #ef4444, #dc2626); }
+.kpi-green { background: linear-gradient(135deg, #10b981, #059669); }
+
+.kpi-value {
+    font-size: 30px;
+}
+
+.kpi-label {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+/* Tables */
+.dataframe {
+    border-radius: 10px;
+}
+
+/* Sidebar text */
+section[data-testid="stSidebar"] .css-1d391kg {
+    color: white;
+}
+
+/* Dropdown / selectbox */
+section[data-testid="stSidebar"] .stSelectbox div {
+    color: rgb(255, 255, 255);
+}
+
+/* Multiselect */
+section[data-testid="stSidebar"] .stMultiSelect div {
+    color: #d9a507;
+    font-size: 15px !important;
+}
+
+/* Sidebar header */
+section[data-testid="stSidebar"] h2, 
+section[data-testid="stSidebar"] h3 {
+    color: #dc084b;
+    font-size: 30px !important;
+}
+
+/* Sidebar background */
+section[data-testid="stSidebar"] {
+    background: linear-gradient(180deg, #1e293b, #0f172a);
+    color: white;
+}
