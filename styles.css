@@ -33,6 +33,7 @@ body {
 .kpi-blue { background: linear-gradient(135deg, #6366f1, #3b82f6); }
 .kpi-red { background: linear-gradient(135deg, #ef4444, #dc2626); }
 .kpi-green { background: linear-gradient(135deg, #10b981, #059669); }
+.kpi-orange { background: linear-gradient(135deg, #f59e0b, #d97706); }
 
 .kpi-value {
     font-size: 30px;
@@ -53,6 +54,12 @@ section[data-testid="stSidebar"] .css-1d391kg {
     color: white;
 }
 
+/* Slider */
+section[data-testid="stSidebar"] .stSlider label {
+    color: #d9a507;
+    font-size: 15px !important;
+}
+
 /* Dropdown / selectbox */
 section[data-testid="stSidebar"] .stSelectbox div {
     color: rgb(255, 255, 255);
@@ -68,7 +75,7 @@ section[data-testid="stSidebar"] .stMultiSelect div {
 section[data-testid="stSidebar"] h2, 
 section[data-testid="stSidebar"] h3 {
     color: #dc084b;
-    font-size: 30px !important;
+    font-size: 25px !important;
 }
 
 /* Sidebar background */
