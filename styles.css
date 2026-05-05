@@ -1,85 +1,199 @@
-/* Background */
 body {
-    background: linear-gradient(to right, #eef2ff, #f8fafc);
+    background: #f8fafc;
 }
 
-/* Title */
 .title {
-    font-size: 35px !important;
-    font-weight: 800 !important;
-    text-align: center !important;
-    color: #4f46e5 !important;
-    margin-bottom: 20px;
-}
-
-/* Section headers */
-.section {
-    font-size: 30px !important;
-    font-weight: 700;
-    color: #1e293b;
-    margin-top: 30px !important;
-}
-
-/* KPI Cards */
-.kpi-card {
-    padding: 20px;
-    border-radius: 16px;
+    font-size: 42px !important;
+    font-weight: 800;
     text-align: center;
-    color: white;
-    font-weight: bold;
-    box-shadow: 0px 6px 15px rgba(0,0,0,0.15);
+    color: #4f46e5;
 }
 
-.kpi-blue { background: linear-gradient(135deg, #6366f1, #3b82f6); }
-.kpi-red { background: linear-gradient(135deg, #ef4444, #dc2626); }
-.kpi-green { background: linear-gradient(135deg, #10b981, #059669); }
-.kpi-orange { background: linear-gradient(135deg, #f59e0b, #d97706); }
+/* Tabs */
+button[role="tab"] {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+/* Sidebar */
+section[data-testid="stSidebar"] {
+    background: white !important;
+    color: black !important;
+}
+
+/* Labels */
+section[data-testid="stSidebar"] label {
+    color: black !important;
+    background: #d47878 !important;
+}
+
+/* Multiselect container */
+section[data-testid="stSidebar"] .stMultiSelect > div {
+    padding: 0 !important;
+}
+
+/* Reduce gap between items */
+section[data-testid="stSidebar"] .stMultiSelect div[data-baseweb="select"] > div {
+    gap: 4px !important;
+}
+
+/* Selected items (chips) */
+section[data-testid="stSidebar"] [data-baseweb="tag"] {
+    background: transparent !important;
+    border: none !important;
+    padding: 2px 6px !important;
+    margin: 2px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+}
+
+/* Reduce left padding (THIS is max safe fix) */
+section[data-testid="stSidebar"] [data-baseweb="tag"] > div {
+    padding-left: 4px !important;
+}
+
+/* Keep X button visible */
+section[data-testid="stSidebar"] [data-baseweb="tag"] button {
+    background: transparent !important;
+    margin-left: 4px !important;
+    cursor: pointer;
+}
+
+/* Text */
+section[data-testid="stSidebar"] [data-baseweb="tag"] span {
+    font-size: 13px !important;
+    color: black !important;
+    background-color: #d7f689 !important;
+}
+/* Sidebar title */
+.sidebar-title {
+    color: #f70606 !important;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+/* -----------------------------
+   KPI CARDS
+------------------------------ */
+.kpi-card {
+    padding: 15px;
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+    margin: 5px 0;
+}
+
+/* Different KPI colors */
+.kpi-blue {
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+}
+
+.kpi-red {
+    background: linear-gradient(135deg, #ff4b4b, #ff6a6a);
+}
+
+.kpi-green {
+    background: linear-gradient(135deg, #28a745, #5ddc7a);
+}
+
+.kpi-purple {
+    background: linear-gradient(135deg, #8e44ad, #c39bd3);
+}
+
+/* KPI text */
+.kpi-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: #000408;
+}
 
 .kpi-value {
-    font-size: 30px;
+    font-size: 26px;
+    font-weight: bold;
+    color: #000408;
 }
 
-.kpi-label {
-    font-size: 14px;
-    opacity: 0.9;
+/* -----------------------------
+   TITLES
+------------------------------ */
+.main-title {
+    color: #2c3e50;
+    font-weight: 700;
 }
 
-/* Tables */
-.dataframe {
-    border-radius: 10px;
+.section-title {
+    color: #34495e;
+    padding-left: 10px;
+    margin-top: 20px;
 }
 
-/* Sidebar text */
-section[data-testid="stSidebar"] .css-1d391kg {
-    color: white;
+/* -----------------------------
+   TABS STYLING
+------------------------------ */
+
+/* All tabs */
+button[role="tab"] {
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    border-radius: 8px !important;
+    margin-right: 5px !important;
+    padding: 8px 12px !important;
+    border: none !important;
 }
 
-/* Slider */
-section[data-testid="stSidebar"] .stSlider label {
-    color: #d9a507;
-    font-size: 15px !important;
+/* Default (inactive tabs) */
+button[role="tab"] {
+    background-color: #aebfd1 !important;
+    color: #333 !important;
 }
 
-/* Dropdown / selectbox */
-section[data-testid="stSidebar"] .stSelectbox div {
-    color: rgb(255, 255, 255);
+/* Active tab */
+button[role="tab"][aria-selected="true"] {
+    background-color: #0f796b !important;
+    color: white !important;
 }
 
-/* Multiselect */
-section[data-testid="stSidebar"] .stMultiSelect div {
-    color: #d9a507;
-    font-size: 15px !important;
+/* -----------------------------
+   TAB-SPECIFIC INFO BOXES
+------------------------------ */
+
+.info-cluster {
+    background-color: #b5ddf7;
+    border-left: 5px solid #4facfe;
+    padding: 10px;
+    border-radius: 8px;
+    color: #1e293b;
 }
 
-/* Sidebar header */
-section[data-testid="stSidebar"] h2, 
-section[data-testid="stSidebar"] h3 {
-    color: #dc084b;
-    font-size: 25px !important;
+.info-promotion {
+    background-color: #f4ec7b;
+    border-left: 5px solid #f4e432;
+    padding: 10px;
+    border-radius: 8px;
+    color: #1e293b;
 }
 
-/* Sidebar background */
-section[data-testid="stSidebar"] {
-    background: linear-gradient(180deg, #1e293b, #0f172a);
-    color: white;
+.info-retention {
+    background-color: #a5f5d0;
+    border-left: 5px solid #22c55e;
+    padding: 10px;
+    border-radius: 8px;
+    color: #1e293b;
+}
+
+.info-manager {
+    background-color: #f5b4b4;
+    border-left: 5px solid #ef4444;
+    padding: 10px;
+    border-radius: 8px;
+    color: #1e293b;
+}
+
+.info-explorer {
+    background-color: #d2cbf8;
+    border-left: 5px solid #8b5cf6;
+    padding: 10px;
+    border-radius: 8px;
+    color: #1e293b;
 }
