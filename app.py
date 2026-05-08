@@ -2,9 +2,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-# -----------------------------
-# Load CSS
-# -----------------------------
+#Load the css
 def load_css():
     with open("styles.css") as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
@@ -13,22 +11,16 @@ load_css()
 
 st.set_page_config(layout="wide")
 
-# -----------------------------
-# Load Data
-# -----------------------------
+#Load the data
 df = pd.read_csv("data/Palo_Alto_Networks.csv")
 
-# -----------------------------
-# FEATURE ENGINEERING (REQUIRED)
-# -----------------------------
+#Feature engineering
 df['TrainingIntensity'] = df['TrainingTimesLastYear'] / (df['YearsAtCompany'] + 1)
 df['PromotionGapRatio'] = df['YearsSinceLastPromotion'] / (df['YearsAtCompany'] + 1)
 df['RoleStagnationIndex'] = df['YearsInCurrentRole'] / (df['YearsAtCompany'] + 1)
 df['ManagerStability'] = df['YearsWithCurrManager'] / (df['YearsAtCompany'] + 1)
 
-# -----------------------------
-# RISK LEVEL
-# -----------------------------
+#Assigning the risk level
 def assign_risk(row):
     if row['PromotionGapRatio'] > 0.6 and row['RoleStagnationIndex'] > 0.6:
         return "High Risk"
@@ -39,9 +31,7 @@ def assign_risk(row):
 
 df['RiskLevel'] = df.apply(assign_risk, axis=1)
 
-# -----------------------------
-# Derived Columns (safety)
-# -----------------------------
+#Derived columns
 if 'TrainingNeed' not in df.columns:
     df['TrainingNeed'] = df['TrainingIntensity'].apply(
         lambda x: "High Need" if x < 0.2 else "Moderate" if x < 0.5 else "Low Need"
@@ -60,9 +50,7 @@ if 'Action' not in df.columns:
         axis=1
     )
 
-# -----------------------------
-# CREATE CAREER CLUSTER
-# -----------------------------
+#Career cluster
 def cluster_label(row):
     if row['PromotionGapRatio'] < 0.3:
         return "Fast Growth"
@@ -73,48 +61,37 @@ def cluster_label(row):
 
 df['CareerCluster'] = df.apply(cluster_label, axis=1)
 
-# -----------------------------
-# RETENTION OPPORTUNITY
-# -----------------------------
+#Retention oppurtunity
 df['RetentionOpportunity'] = (
     (df['RiskLevel'].isin(["High Risk", "Medium Risk"])) |
     (df['YearsSinceLastPromotion'] > 3) |
     (df['JobSatisfaction'] <= 2)
 )
-# -----------------------------
-# TITLE
-# -----------------------------
+
+#Project title
 st.markdown('<p class="title">Career Progression and Promotion Gap Analysis for Retention Optimization at Palo Alto Networks</p>', unsafe_allow_html=True)
 
-# -----------------------------
-# SIDEBAR (FINAL VERSION)
-# -----------------------------
+#Sidebar
 st.sidebar.markdown(
     "<h2 class='sidebar-title'>🔍 Filters</h2>",
     unsafe_allow_html=True
 )
 
-# -----------------------------
-# Department (TEXT VALUES)
-# -----------------------------
+#Sidebar department filter
 dept = st.sidebar.multiselect(
     "Department",
     sorted(df['Department'].dropna().unique()),
     default=sorted(df['Department'].dropna().unique())
 )
 
-# -----------------------------
-# Job Role (TEXT VALUES)
-# -----------------------------
+#Sidebar Jobrole filter
 role = st.sidebar.multiselect(
     "Job Role",
     sorted(df['JobRole'].dropna().unique()),
     default=sorted(df['JobRole'].dropna().unique())
 )
 
-# -----------------------------
-# Risk Level (COLORED TEXT STYLE)
-# -----------------------------
+#Sidebar Risk filter 
 risk_options = {
     "🔴 High Risk": "High Risk",
     "🟡 Medium Risk": "Medium Risk",
@@ -129,9 +106,7 @@ selected_risk_display = st.sidebar.multiselect(
 
 risk = [risk_options[r] for r in selected_risk_display]
 
-# -----------------------------
-# Career Cluster (COLORED)
-# -----------------------------
+#Sidebar Career cluster filter
 cluster_options = {
     "🔵 Fast Growth": "Fast Growth",
     "🟣 Stable": "Stable",
@@ -146,17 +121,13 @@ selected_cluster_display = st.sidebar.multiselect(
 
 cluster = [cluster_options[c] for c in selected_cluster_display]
 
-# -----------------------------
-# Promotion Gap Slider
-# -----------------------------
+#Promotion Gap slider
 gap = st.sidebar.slider(
     "Promotion Gap",
     0.0, 1.0, (0.0, 1.0)
 )
 
-# -----------------------------
-# FILTERED DATA
-# -----------------------------
+#Filtered data
 filtered_df = df[
     (df['Department'].isin(dept)) &
     (df['JobRole'].isin(role)) &
@@ -166,9 +137,7 @@ filtered_df = df[
     (df['PromotionGapRatio'] <= gap[1])
 ]
 
-# -----------------------------
-# KPI SECTION
-# -----------------------------
+#KPI Section
 st.markdown("<h3 class='section-title'>📊 Key Metrics</h3>", unsafe_allow_html=True)
 
 col1, col2, col3, col4 = st.columns(4)
@@ -203,9 +172,7 @@ col4.markdown(f"""
 
 st.markdown("<div style='margin-top: 30px;'></div>", unsafe_allow_html=True)
 
-# -----------------------------
-# TABS (MAIN IMPROVEMENT)
-# -----------------------------
+#Tabs
 tab1, tab2, tab3, tab4, tab5 = st.tabs([
     "📈 Career Clusters",
     "📊 Promotion Gap",
@@ -214,9 +181,7 @@ tab1, tab2, tab3, tab4, tab5 = st.tabs([
     "🔍 Cluster Explorer"
 ])
 
-# -----------------------------
-# TAB 1: CLUSTER DASHBOARD
-# -----------------------------
+#Tab1: Career Cluster
 with tab1:
     st.markdown("<h3 class='tab-title'>Career Pattern Insights", unsafe_allow_html=True)
 
@@ -242,9 +207,7 @@ with tab1:
         unsafe_allow_html= True
     )
 
-# -----------------------------
-# TAB 2: PROMOTION GAP
-# -----------------------------
+#Tab2: Promotion Gap
 with tab2:
     st.markdown("<h3 class='tab-title'>Promotion Gap Monitor", unsafe_allow_html=True)
 
@@ -264,9 +227,7 @@ with tab2:
         unsafe_allow_html= True
     )
 
-# -----------------------------
-# TAB 3: RETENTION PANEL
-# -----------------------------
+#Tab3: Retention Panel
 with tab3:
     st.markdown("<h3 class='tab-title'>Retention Opportunities", unsafe_allow_html=True)
 
@@ -288,9 +249,7 @@ with tab3:
         unsafe_allow_html= True
     )
 
-# -----------------------------
-# TAB 4: MANAGER INSIGHTS
-# -----------------------------
+#Tab4: Manager Insights
 with tab4:
     st.markdown("<h3 class='tab-title'>Manager Impact Analysis", unsafe_allow_html=True)
 
@@ -321,9 +280,7 @@ with tab4:
         unsafe_allow_html= True
     )
 
-# -----------------------------
-# TAB 5: CLUSTER EXPLORER
-# -----------------------------
+#Tab5: Cluster Explorer
 with tab5:
     st.markdown("<h3 class='tab-title'>🔍 Cluster Explorer", unsafe_allow_html=True)
 
