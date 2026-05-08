@@ -1,5 +1,6 @@
-body {
-    background: #f8fafc;
+/* Main App Background */
+.stApp {
+    background-color: #000000 !important;
 }
 
 .title {
@@ -17,7 +18,7 @@ button[role="tab"] {
 
 /* Sidebar */
 section[data-testid="stSidebar"] {
-    background: white !important;
+    background: rgb(8, 8, 8) !important;
     color: black !important;
 }
 
@@ -118,12 +119,12 @@ section[data-testid="stSidebar"] [data-baseweb="tag"] span {
    TITLES
 ------------------------------ */
 .main-title {
-    color: #2c3e50;
+    color: #803672 !important;
     font-weight: 700;
 }
 
 .section-title {
-    color: #34495e;
+    color: #fd6303 !important;
     padding-left: 10px;
     margin-top: 20px;
 }
@@ -152,6 +153,12 @@ button[role="tab"] {
 button[role="tab"][aria-selected="true"] {
     background-color: #0f796b !important;
     color: white !important;
+}
+
+.tab-title {
+    color: #f00540 !important;
+    font-size: 28px !important;
+    font-weight: 700 !important;
 }
 
 /* -----------------------------

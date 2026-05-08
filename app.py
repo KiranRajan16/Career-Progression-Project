@@ -218,7 +218,7 @@ tab1, tab2, tab3, tab4, tab5 = st.tabs([
 # TAB 1: CLUSTER DASHBOARD
 # -----------------------------
 with tab1:
-    st.markdown("#### Career Pattern Insights")
+    st.markdown("<h3 class='tab-title'>Career Pattern Insights", unsafe_allow_html=True)
 
     col1, col2 = st.columns(2)
 
@@ -246,7 +246,7 @@ with tab1:
 # TAB 2: PROMOTION GAP
 # -----------------------------
 with tab2:
-    st.markdown("#### Promotion Gap Monitor")
+    st.markdown("<h3 class='tab-title'>Promotion Gap Monitor", unsafe_allow_html=True)
 
     fig3 = px.histogram(filtered_df, x="PromotionGapRatio",
                         title="Promotion Gap Distribution", color_discrete_sequence=["#AB63FA"] )
@@ -268,7 +268,7 @@ with tab2:
 # TAB 3: RETENTION PANEL
 # -----------------------------
 with tab3:
-    st.markdown("#### Retention Opportunities")
+    st.markdown("<h3 class='tab-title'>Retention Opportunities", unsafe_allow_html=True)
 
     retention_df = filtered_df[filtered_df['RetentionOpportunity']==True]
     if retention_df.empty:
@@ -292,7 +292,7 @@ with tab3:
 # TAB 4: MANAGER INSIGHTS
 # -----------------------------
 with tab4:
-    st.markdown("#### Manager Impact Analysis")
+    st.markdown("<h3 class='tab-title'>Manager Impact Analysis", unsafe_allow_html=True)
 
     fig6 = px.scatter(
         filtered_df,
@@ -325,7 +325,7 @@ with tab4:
 # TAB 5: CLUSTER EXPLORER
 # -----------------------------
 with tab5:
-    st.markdown("#### 🔍 Cluster Explorer")
+    st.markdown("<h3 class='tab-title'>🔍 Cluster Explorer", unsafe_allow_html=True)
 
     selected_cluster = st.selectbox(
         "Select Career Cluster",
